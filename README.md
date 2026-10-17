@@ -9,6 +9,14 @@ through a single, unified interface, even though each device's underlying
 
 It demonstrates the **Adapter Design Pattern**.
 
+> **Looking for the code explanation?**
+> This README covers the *pattern*: the problem, the roles, and the
+> conversion tables. For a **line-by-line walkthrough of the actual
+> code** — the complete source of all 11 classes, with a note on every
+> line explaining what the Java means, why it is written that way, and
+> what would break if it were written differently — see
+> **[CODE_EXPLANATION.md](CODE_EXPLANATION.md)**.
+
 ## The Problem
 
 Imagine four legacy/third-party device libraries already exist:
@@ -76,6 +84,9 @@ and converts both the method calls and the data values:
 | `LightAdapter` | `LegacyLight` | `enableLight()` | `disableLight()` | `lightStatus()` |
 | `HeaterAdapter` | `LegacyHeater` | `startHeating()` | `stopHeating()` | `readHeaterStatus()` |
 
+Each adapter is explained individually — field by field and method by
+method — in [CODE_EXPLANATION.md](CODE_EXPLANATION.md#3-the-adapters-the-adapter-package).
+
 ## Data Conversion Examples
 
 Every adapter validates that `level` is between 1 and 10 (inclusive) and
@@ -96,24 +107,30 @@ differ completely.
 ## Project Structure
 
 ```
-smart-home-adapter/
-├── README.md
-└── src/
-    └── smarthome/
-        ├── Main.java
-        ├── SmartDevice.java
-        ├── SmartHomeController.java
-        ├── adapter/
-        │   ├── AirConditionerAdapter.java
-        │   ├── FanAdapter.java
-        │   ├── LightAdapter.java
-        │   └── HeaterAdapter.java
-        └── legacy/
-            ├── LegacyAirConditioner.java
-            ├── LegacyFan.java
-            ├── LegacyLight.java
-            └── LegacyHeater.java
+.
+├── README.md               <- this file: the pattern, roles, conversion tables
+├── CODE_EXPLANATION.md     <- line-by-line walkthrough of all 11 classes
+└── smart-home-adapter/
+    ├── out/                <- compiled .class files (build output)
+    └── src/
+        └── smarthome/
+            ├── Main.java
+            ├── SmartDevice.java
+            ├── SmartHomeController.java
+            ├── adapter/
+            │   ├── AirConditionerAdapter.java
+            │   ├── FanAdapter.java
+            │   ├── LightAdapter.java
+            │   └── HeaterAdapter.java
+            └── legacy/
+                ├── LegacyAirConditioner.java
+                ├── LegacyFan.java
+                ├── LegacyLight.java
+                └── LegacyHeater.java
 ```
+
+The two Markdown files sit at the repository root, next to the
+`smart-home-adapter/` project folder.
 
 ## How to Compile and Run
 
